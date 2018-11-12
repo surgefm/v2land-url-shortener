@@ -31,7 +31,8 @@
     "build": "tsc",
     "start": "tsc && node dist/server.js",
     "watch-server": "nodemon --inspect --watch 'src/**/*' -e ts,tsx --exec 'node -r ts-node/register' ./src/server.ts",
-    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "lint": "eslint src/* && tslint -c tslint.json -p tsconfig.json",
+    "fix": "eslint --fix src/* && tslint -c tslint.json -p tsconfig.json --fix",
     "watch": "tsc -w"
   }
 }
