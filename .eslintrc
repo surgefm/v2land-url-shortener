@@ -11,7 +11,13 @@
     "ecmaVersion": 6,
     "sourceType": "module",
     "ecmaFeatures": {
-        "jsx": true
+        "jsx": true,
+        "modules": true
     }
+  },
+  "env": {
+    "node": true,
+    "es6": true,
+    "mocha": true
   }
 }

@@ -10,18 +10,19 @@
   "dependencies": {
     "koa": "^2.6.2",
     "koa-router": "^7.4.0",
-    "shortid": "^2.2.14",
+    "nanoid": "^2.0.0",
     "typescript": "^3.1.6",
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
     "@types/koa": "^2.0.46",
     "@types/koa-router": "^7.0.33",
-    "@types/shortid": "^0.0.29",
+    "@types/nanoid": "^1.2.0",
     "@types/valid-url": "^1.0.2",
     "eslint": "^5.9.0",
     "eslint-config-v2land": "^1.0.4",
     "eslint-plugin-typescript": "^0.13.0",
+    "mocha": "^5.2.0",
     "nodemon": "^1.18.6",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
@@ -33,6 +34,7 @@
     "watch-server": "nodemon --inspect --watch 'src/**/*' -e ts,tsx --exec 'node -r ts-node/register' ./src/server.ts",
     "lint": "eslint src/* && tslint -c tslint.json -p tsconfig.json",
     "fix": "eslint --fix src/* && tslint -c tslint.json -p tsconfig.json --fix",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "test": "mocha tests/*.js --exit"
   }
 }
