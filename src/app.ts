@@ -1,13 +1,16 @@
 import Koa from 'koa';
-import Router from 'koa-router';
+import bodyParser from 'koa-bodyparser';
+import { routers } from './routers/index';
 
 const app = new Koa();
-const router = new Router();
 
-router.get('/*', async (ctx: Koa.BaseContext) => {
-  ctx.body = 'Hello World!';
-});
+// router.get('/:id', async (ctx: Koa.Context) => {
+//   ctx.body = 'Hello World!';
+// });
 
-app.use(router.routes());
+app
+  .use(routers.routes())
+  .use(routers.allowedMethods())
+  .use(bodyParser());
 
 module.exports = app;
