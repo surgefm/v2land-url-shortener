@@ -65,3 +65,6 @@ dist/
 
 # vscode config
 .vscode/
+
+# Dev sqlite
+data.sqlite

@@ -1,8 +1,6 @@
 {
-  'development': {
-
+  "development": {
+    "url": "sqlite:relativePath/../data.sqlite"
   },
-  'production': {
-    
-  }
+  "production": {}
 }
