@@ -23,4 +23,4 @@ const routers = router
     ctx.body = shortId;
   });
 
-module.exports = routers;
+export default routers;
