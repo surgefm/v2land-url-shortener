@@ -1,23 +1,22 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "v2land"
-  ],
+  "extends": ["eslint:recommended", "v2land"],
   "parser": "typescript-eslint-parser",
-  "plugins": [
-    "typescript"
-  ],
+  "plugins": ["typescript"],
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
     "ecmaFeatures": {
-        "jsx": true,
-        "modules": true
+      "jsx": true,
+      "modules": true
     }
   },
   "env": {
     "node": true,
     "es6": true,
     "mocha": true
+  },
+  "rules": {
+    "no-unused-vars": "error",
+    "typescript/no-unused-vars": "error"
   }
 }
