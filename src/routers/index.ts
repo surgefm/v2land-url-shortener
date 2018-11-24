@@ -1,6 +1,6 @@
 const routers = require('koa-router')();
 
-const newRoute = require('./newRoute');
+import newRoute from './newRoute';
 
 routers.use('/api', newRoute.routes(), newRoute.allowedMethods());
 
