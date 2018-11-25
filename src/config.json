@@ -1,6 +1,26 @@
 {
   "development": {
-    "url": "sqlite:relativePath/../data.sqlite"
+    "site": {
+
+    },
+    "db": {
+      "url": "sqlite:relativePath/../data.sqlite"
+    },
+    "redis": {
+      "enabled": false,
+      "url": "[redis[s]:]//[[user][:password@]][host][:port][/db-number][?db=db-number[&password=bar[&option=value]]]"
+    }
   },
-  "production": {}
+  "production": {
+    "site": {
+
+    },
+    "db": {
+      "url": "sqlite:relativePath/../data.sqlite"
+    },
+    "redis": {
+      "enabled": true,
+      "url": "127.0.0.1"
+    }
+  }
 }
