@@ -7,9 +7,11 @@ const app = new Koa();
 import db from './models';
 
 app
+  .use(bodyParser({ onerror: function(err, ctx) {
+    ctx.throw('body parse error' + err, 422);
+  } }))
   .use(routers.routes())
-  .use(routers.allowedMethods())
-  .use(bodyParser());
+  .use(routers.allowedMethods());
 
 db
   .sequelize
