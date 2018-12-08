@@ -8,13 +8,15 @@ const router = new Router();
 
 const routers = router
   .post(':shortUrl*', async (ctx: Koa.Context) => {
-    const shortUrl = ctx.params.hasOwnProperty('shortUrl') && ctx.params.shortUrl !== undefined ? ctx.params.shortUrl : generateId();
-
     const postData: {url?: string} | null | undefined = ctx.request.body;
+    console.log(ctx.request.rawBody);
+
     if (postData !== undefined && postData !== null && postData.hasOwnProperty('url') && postData.url !== undefined) {
       try {
+        const shortUrl = ctx.params.hasOwnProperty('shortUrl') && ctx.params.shortUrl !== undefined ? ctx.params.shortUrl : generateId();
+
         await newUrl(shortUrl, postData.url);
-        ctx.body = shortUrl;
+        ctx.body = { error: false, shortUrl };
         console.info('New shortUrl:', shortUrl, postData.url);
       } catch (error) {
         console.log(error);
