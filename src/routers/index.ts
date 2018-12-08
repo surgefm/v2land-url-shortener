@@ -1,7 +1,7 @@
 const routers = require('koa-router')();
 
-import newRoute from './newRoute';
+import shortUrlRoute from './shortUrl';
 
-routers.use('/api', newRoute.routes(), newRoute.allowedMethods());
+routers.use('/', shortUrlRoute.routes(), shortUrlRoute.allowedMethods());
 
 export { routers };
