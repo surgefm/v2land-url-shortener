@@ -1,7 +1,7 @@
 {
   "development": {
     "site": {
-
+      "domain": "http://localhost/"
     },
     "db": {
       "url": "sqlite:relativePath/../data.sqlite"
@@ -13,7 +13,7 @@
   },
   "production": {
     "site": {
-
+      "domain": "http://localhost/"
     },
     "db": {
       "url": "sqlite:relativePath/../data.sqlite"
