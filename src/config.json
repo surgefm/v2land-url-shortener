@@ -4,7 +4,8 @@
       "domain": "http://localhost/"
     },
     "db": {
-      "url": "sqlite:relativePath/../data.sqlite"
+      "url": "sqlite:relativePath/../data.sqlite",
+      "_": "you can write more sequelize configs here."
     },
     "redis": {
       "enabled": false,
@@ -20,7 +21,7 @@
     },
     "redis": {
       "enabled": true,
-      "url": "127.0.0.1"
+      "url": "redis://127.0.0.1:6379"
     }
   }
 }
