@@ -4,7 +4,7 @@ import { routers } from './routers/index';
 import sequelize = require('sequelize');
 
 const app = new Koa();
-import db from './models/index';
+import db from './models';
 
 app
   .use(routers.routes())
