@@ -20,6 +20,16 @@ $ yarn add sqlite3 // SQLite
 $ yarn add tedious // MSSQL
 ```
 
+### Config redis and database dialect
+
+The config file is under src/config.json.
+
+### Sync models to database
+
+```bash
+$ yarn dbsync
+```
+
 ## Usage
 
 It provides several commands.

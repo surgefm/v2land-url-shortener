@@ -40,11 +40,13 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "tsc && node dist/server.js",
-    "watch-server": "nodemon --inspect --watch 'src/**/*' -e ts,tsx --exec 'node -r ts-node/register' ./src/server.ts",
-    "lint": "eslint src/* && tslint -c tslint.json -p tsconfig.json",
+    "dbsync": "yarn build && node dist/dbSync.js",
     "fix": "eslint --fix src/* && tslint -c tslint.json -p tsconfig.json --fix",
-    "watch": "tsc -w",
-    "test": "mocha tests/*.js --exit"
+    "lint": "eslint src/* && tslint -c tslint.json -p tsconfig.json",
+    "postbuild": "cp src/config.json dist/",
+    "start": "yarn build && node dist/server.js",
+    "test": "mocha tests/*.js --exit",
+    "watch": "cp src/config.json dist/ && tsc -w",
+    "watch-server": "nodemon --inspect --watch 'src/**/*' -e ts,tsx --exec 'node -r ts-node/register' ./src/server.ts",
   }
 }
