@@ -9,7 +9,6 @@ const router = new Router();
 const routers = router
   .post(':shortUrl*', async (ctx: Koa.Context) => {
     const postData: {url?: string} | null | undefined = ctx.request.body;
-    console.log(ctx.request.rawBody);
 
     if (postData !== undefined && postData !== null && postData.hasOwnProperty('url') && postData.url !== undefined) {
       try {

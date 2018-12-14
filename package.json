@@ -47,6 +47,6 @@
     "start": "yarn build && node dist/server.js",
     "test": "mocha tests/*.js --exit",
     "watch": "cp src/config.json dist/ && tsc -w",
-    "watch-server": "nodemon --inspect --watch 'src/**/*' -e ts,tsx --exec 'node -r ts-node/register' ./src/server.ts",
+    "watch-server": "nodemon --inspect --watch 'src/**/*' -e ts,tsx --exec 'node -r ts-node/register' ./src/server.ts"
   }
 }
