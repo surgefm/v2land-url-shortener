@@ -2,38 +2,34 @@ import db from '../models';
 import redis from 'redis';
 import { isUri } from 'valid-url';
 import { promisify } from 'util';
-import { redisFactory } from '../utils';
+import { redisFactory, idToHashId } from '../utils';
 
 const env = process.env.NODE_ENV || 'development';
 const redisConfig = require(__dirname + '/../config.json')[env].redis;
 let redisInstance: redis.RedisClient;
 
-
 /**
  * Create new short url entry
- * @param  {string} shortUrl
  * @param  {string} url
  */
-function newUrl(shortUrl: string, url: string) {
+function newUrl(url: string) {
   return new Promise(async (resolve, reject) => {
     let id: string = '';
+    let shortUrl: string = '';
 
     if (!isUri(url)) reject('Invalid URL.');
 
     try {
-      const existance = await db.URL.count({
-        where: {
-          shortUrl: shortUrl,
-        },
-      });
-
-      if (existance > 0) reject('Short URL exist.');
+      const total = await db.URL.count();
 
       const result = await db.URL.create({
-        shortUrl: shortUrl,
+        shortUrl: idToHashId(total + 1),
         url: url,
       });
-      if (result.id !== undefined) id = result.id;
+      if (result.id !== undefined) {
+        id = result.id;
+        shortUrl = result.shortUrl;
+      }
     } catch {
       reject('Database error.');
     }
@@ -44,12 +40,12 @@ function newUrl(shortUrl: string, url: string) {
           try {
             redisInstance = await redisFactory();
           } catch (error) {
-            reject(error);
+            reject('Redis error' + error);
           }
         }
-        redisInstance.set(id, url);
+        redisInstance.set(shortUrl, url);
       }
-      resolve(id);
+      resolve(shortUrl);
     } else {
       reject('Unable to create new entry.');
     }
@@ -75,9 +71,11 @@ function getUrl(shortUrl: string) {
       url = await getAsync(shortUrl);
     }
     if (url === '') {
-      const result = await db.URL.findOne({ where: {
-        shortUrl: shortUrl,
-      } });
+      const result = await db.URL.findOne({
+        where: {
+          shortUrl: shortUrl,
+        },
+      });
 
       if (result) url = result.url;
     }
@@ -89,7 +87,4 @@ function getUrl(shortUrl: string) {
   });
 }
 
-export {
-  newUrl,
-  getUrl,
-};
+export { newUrl, getUrl };
